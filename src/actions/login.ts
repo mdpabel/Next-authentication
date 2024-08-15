@@ -86,6 +86,12 @@ export const handleLogin = async (
     const refreshToken = await generateToken(
       {
         userId: user.id,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        lastLogin: user.lastLogin!,
       },
       'refresh',
     );

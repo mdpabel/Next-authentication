@@ -82,7 +82,7 @@ export const handleSignup = async (
     const configuration: CreateEmailOptions = {
       from: 'no-reply <support@resend.dev>',
       to: newUser.email,
-      subject: 'Welcome to Our Platform',
+      subject: 'Verify your email',
       react: EmailVerificationTemplate({
         verificationLink: `http://localhost:3000/verify-email?token=${token}`,
       }),
