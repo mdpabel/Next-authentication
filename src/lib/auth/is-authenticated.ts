@@ -18,10 +18,7 @@ export const isAuthenticated = async (
       refreshedToken: false,
     };
   } catch (error) {
-    console.log('Access token expired or invalid:', error);
-
     if (refreshToken) {
-      console.log('Attempting to refresh tokens...');
       const newTokens = await refreshTokens(refreshToken);
 
       if (newTokens) {

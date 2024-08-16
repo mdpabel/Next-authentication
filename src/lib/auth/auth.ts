@@ -2,7 +2,6 @@ import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/constants';
 import { cookies } from 'next/headers';
 import { verifyToken } from './jwt-token';
 import { cache } from 'react';
-import jwt from 'jsonwebtoken';
 import { isAuthenticated } from './is-authenticated';
 
 export const auth = cache(async () => {

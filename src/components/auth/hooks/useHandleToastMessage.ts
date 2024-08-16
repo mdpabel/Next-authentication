@@ -7,5 +7,5 @@ export const useHandleToastMessage = (state: FormActionState) => {
     if (state.message) {
       toastMessage(state.message, state.success);
     }
-  }, [state.message, state.success]);
+  }, [state, state.message, state.success]);
 };

@@ -1,20 +1,13 @@
+import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/constants';
 import { auth } from '@/lib/auth/auth';
 import prisma from '@/prisma/db';
+import { cookies } from 'next/headers';
 
 const Dashboard = async () => {
   const session = await auth();
-
-  // const user = await prisma.user.findUnique({
-  //   where: {
-  //     email: session?.user?.email!,
-  //   },
-  //   select: {
-  //     email: true,
-  //     firstName: true,
-  //     lastName: true,
-  //     lastLogin: true,
-  //   },
-  // });
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get(ACCESS_TOKEN_NAME)?.value;
+  const refreshToken = cookieStore.get(REFRESH_TOKEN_NAME)?.value;
 
   return (
     <div>
@@ -34,6 +27,13 @@ const Dashboard = async () => {
             Expires at:{' '}
             {session?.payload.exp &&
               new Date(session?.payload.exp * 1000).toString()}
+          </div>
+
+          <div className='break-words'>
+            <strong>Access token:</strong> {accessToken}
+          </div>
+          <div className='break-words'>
+            <strong>Refresh token:</strong> {refreshToken}
           </div>
         </div>
       </div>

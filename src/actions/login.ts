@@ -102,7 +102,7 @@ export const handleLogin = async (
     return {
       success: true,
       message: 'Logged in successfully',
-      redirectAfterLogin: '/dashboard',
+      redirect: '/dashboard',
     };
   } catch (err: any) {
     return {

@@ -17,13 +17,15 @@ import { useFormState } from 'react-dom';
 import { useHandleToastMessage } from './hooks/useHandleToastMessage';
 import { useHandleFormErrors } from './hooks/useHandleFormErrors';
 import { useHandleRedirections } from './hooks/useHandleRedirections';
+import PasswordInputField from './password-field';
+import Link from 'next/link';
 
 export type FormActionState = {
   message?: string;
   error?: any;
   success: boolean;
   redirectResendEmailVerificationPage?: boolean;
-  redirectAfterLogin?: string;
+  redirect?: string;
 };
 
 const initialState: FormActionState = {
@@ -31,7 +33,7 @@ const initialState: FormActionState = {
   error: null,
   success: false,
   redirectResendEmailVerificationPage: false,
-  redirectAfterLogin: undefined,
+  redirect: undefined,
 };
 
 export type AuthFormProps = {
@@ -134,7 +136,7 @@ const AuthForm = ({ action, formType }: AuthFormProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type='password' placeholder='Password' {...field} />
+                  <PasswordInputField field={field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -161,6 +163,16 @@ const AuthForm = ({ action, formType }: AuthFormProps) => {
           )}
 
           <FormButton formType={formType} />
+
+          {formType === 'login' ? (
+            <p>
+              Don&apos;t have an account? <Link href='/signup'>Sign up</Link>
+            </p>
+          ) : formType === 'signup' ? (
+            <p>
+              Already have an account? <Link href='/login'>Login</Link>
+            </p>
+          ) : null}
         </form>
       </div>
     </Form>

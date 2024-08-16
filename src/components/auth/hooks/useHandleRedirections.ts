@@ -12,9 +12,9 @@ export const useHandleRedirections = (state: FormActionState) => {
   }, [state.redirectResendEmailVerificationPage, router]);
 
   useEffect(() => {
-    if (state.redirectAfterLogin) {
-      router.push(state.redirectAfterLogin!);
+    if (state.redirect) {
+      router.push(state.redirect!);
       router.refresh();
     }
-  }, [router, state.redirectAfterLogin]);
+  }, [router, state.redirect]);
 };
